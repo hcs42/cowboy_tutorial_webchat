@@ -23,6 +23,25 @@ start_link() ->
 %%%=============================================================================
 
 init([]) ->
+
+    Dispatch = cowboy_router:compile([
+        {'_', [
+
+               {"/", cowboy_static,
+                [{directory, {priv_dir, chat, [<<"static">>]}},
+                 {file, <<"index.html">>},
+                 {mimetypes, {fun mimetypes:path_to_mimes/2, default}}]},
+
+               {"/static/[...]", cowboy_static,
+                [{directory, {priv_dir, chat, [<<"static">>]}},
+                 {mimetypes, {fun mimetypes:path_to_mimes/2, default}}]}
+
+              ]}
+    ]),
+
+    cowboy:start_http(chat, 100,
+                      [{port, 8080}],
+                      [{env, [{dispatch, Dispatch}]}]),
     {ok, #state{}}.
 
 handle_call(_Request, _From, State) ->
@@ -35,7 +54,7 @@ handle_info(_Info, State) ->
     {noreply, State}.
 
 terminate(_Reason, _State) ->
-    ok.
+    cowboy:stop_listener(chat).
 
 code_change(_OldVsn, State, _Extra) ->
     {ok, State}.
