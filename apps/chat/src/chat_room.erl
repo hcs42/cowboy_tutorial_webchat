@@ -27,6 +27,8 @@ init([]) ->
     Dispatch = cowboy_router:compile([
         {'_', [
 
+               {"/ws", chat_ws_handler, []},
+
                {"/", cowboy_static,
                 [{directory, {priv_dir, chat, [<<"static">>]}},
                  {file, <<"index.html">>},
