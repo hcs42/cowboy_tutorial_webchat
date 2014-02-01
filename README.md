@@ -24,7 +24,7 @@ We will use the `rebar` tool for building our releases, so let's download that:
 ```bash
 $ mkdir cowboy_chat
 $ cd cowboy_chat
-$ wget https://github.com/rebar/rebar/wiki/rebar
+$ wget https://raw.github.com/wiki/rebar/rebar/rebar
 $ chmod +x rebar
 ```
 
