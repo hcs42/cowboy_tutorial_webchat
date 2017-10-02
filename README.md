@@ -1,4 +1,4 @@
-# Warning: This example uses an old version of cowboy, an old version of rebar and an old version of Erlang. It doesn't work with new versions.
+# Warning: This tutorial uses an old version of cowboy, an old version of rebar and an old version of Erlang. It doesn't work with new versions.
 
 Cowboy chat tutorial
 --------------------
